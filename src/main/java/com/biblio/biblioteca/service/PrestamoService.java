@@ -11,11 +11,9 @@ public interface PrestamoService {
 
     Optional<PrestamoDTO> findById(Long id);
 
-    Optional<PrestamoDTO> findByName(String name);
+    PrestamoDTO save(PrestamoDTO prestamoDTO);
 
-    Optional<PrestamoDTO> save(PrestamoDTO prestamoDTO);
-
-    Optional<PrestamoDTO> delete(Long id);
+    void delete(Long id);
 
     Optional<PrestamoDTO> update(Long id, PrestamoDTO prestamoDTO);
 

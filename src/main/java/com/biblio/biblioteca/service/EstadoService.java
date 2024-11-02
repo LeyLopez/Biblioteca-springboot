@@ -13,7 +13,7 @@ public interface EstadoService {
 
     EstadoDTO save(EstadoDTO estadoDTO);
 
-    Optional<EstadoDTO> delete(Long id);
+    void delete(Long id);
 
     Optional<EstadoDTO> update(Long id, EstadoDTO estadoDTO);
 

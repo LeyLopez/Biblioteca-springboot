@@ -11,11 +11,15 @@ public interface UsuarioService {
 
     Optional<UsuarioDTO> findById(Long id);
 
+    Optional<UsuarioDTO> findByEmail(String email);
+
+    Optional<UsuarioDTO> findByNumeroDocumento(Integer numeroDocumento);
+
     Optional<UsuarioDTO> findByName(String name);
 
-    Optional<UsuarioDTO> save(UsuarioDTO usuarioDTO);
+    UsuarioDTO save(UsuarioDTO usuarioDTO);
 
-    Optional<UsuarioDTO> delete(Long id);
+    void delete(Long id);
 
     Optional<UsuarioDTO> update(Long id, UsuarioDTO usuarioDTO);
 

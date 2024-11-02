@@ -10,11 +10,9 @@ public interface ReservaService {
 
     Optional<ReservaDTO> findById(Long id);
 
-    Optional<ReservaDTO> findByName(String name);
+    ReservaDTO save(ReservaDTO reservaDTO);
 
-    Optional<ReservaDTO> save(ReservaDTO reservaDTO);
-
-    Optional<ReservaDTO> delete(Long id);
+    void delete(Long id);
 
     Optional<ReservaDTO> update(Long id, ReservaDTO reservaDTO);
 

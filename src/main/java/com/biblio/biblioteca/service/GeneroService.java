@@ -11,9 +11,9 @@ public interface GeneroService {
 
     Optional<GeneroDTO> findByName(String name);
 
-    Optional<GeneroDTO> save(GeneroDTO generoDTO);
+    GeneroDTO save(GeneroDTO generoDTO);
 
-    Optional<GeneroDTO> delete(Long id);
+    void delete(Long id);
 
     Optional<GeneroDTO> update(Long id, GeneroDTO generoDTO);
 

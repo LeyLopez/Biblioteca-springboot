@@ -14,7 +14,7 @@ public interface AutorService {
 
     AutorDTO save(AutorDTO autorDTO);
 
-    Optional<AutorDTO> delete(Long id);
+    void delete(Long id);
 
     Optional<AutorDTO> update(Long id, AutorDTO autorDTO);
 

@@ -11,9 +11,9 @@ public interface LibroService {
 
     Optional<LibroDTO> findByName(String name);
 
-    Optional<LibroDTO> save(LibroDTO libroDTO);
+    LibroDTO save(LibroDTO libroDTO);
 
-    Optional<LibroDTO> delete(Long id);
+    void delete(Long id);
 
     Optional<LibroDTO> update(Long id, LibroDTO libroDTO);
 

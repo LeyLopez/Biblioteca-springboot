@@ -36,7 +36,7 @@ public class Usuario {
     private String tipoDocumento;
 
     @Column(nullable = false)
-    private Long numeroDocumento;
+    private Integer numeroDocumento;
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
