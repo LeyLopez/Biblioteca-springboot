@@ -44,7 +44,7 @@ public class Prestamo {
     private Libro libro;
 
 
-    @ManyToOne(targetEntity = Estado.class)
+    @Enumerated(EnumType.STRING)
     private Estado estado;
 
 }

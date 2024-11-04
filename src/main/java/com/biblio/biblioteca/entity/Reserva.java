@@ -40,7 +40,7 @@ public class Reserva {
     @ManyToOne(targetEntity = Libro.class)
     private Libro libro;
 
-    @ManyToOne(targetEntity = Estado.class)
+    @Enumerated(EnumType.STRING)
     private Estado estado;
 
 
