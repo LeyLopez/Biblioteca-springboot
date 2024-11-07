@@ -4,8 +4,9 @@ package com.biblio.biblioteca.dto;
 import com.biblio.biblioteca.entity.Autor;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface AutorMapper {
 
     AutorDTO toDto(Autor autor);
