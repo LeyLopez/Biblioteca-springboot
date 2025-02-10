@@ -10,7 +10,7 @@ public record LoanDTO(Long id,
                       Date loanDate,
                       Date devolutionDate,
                       Date statusChangeDate,
-                      User user,
-                      Book book,
+                      Long user,
+                      Long book,
                       Status status) {
 }

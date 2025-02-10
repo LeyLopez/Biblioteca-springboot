@@ -1,6 +1,7 @@
 package com.biblio.biblioteca.service;
 
 import com.biblio.biblioteca.dto.BookDTO;
+import com.biblio.biblioteca.entity.Book;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,4 +20,5 @@ public interface BookService {
 
     List<BookDTO> findAll();
 
+    Book findBookById(Long id);
 }

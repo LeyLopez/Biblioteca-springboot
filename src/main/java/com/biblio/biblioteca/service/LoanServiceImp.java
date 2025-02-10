@@ -15,10 +15,14 @@ public class LoanServiceImp implements LoanService {
 
     private final LoanRepository loanRepository;
     private final LoanMapper loanMapper;
+    private final UserService userService;
+    private final BookService bookService;
 
-    public LoanServiceImp(LoanRepository loanRepository, LoanMapper loanMapper) {
+    public LoanServiceImp(LoanRepository loanRepository, LoanMapper loanMapper, UserService userService, BookService bookService) {
         this.loanRepository = loanRepository;
         this.loanMapper = loanMapper;
+        this.userService = userService;
+        this.bookService = bookService;
     }
 
 
@@ -30,7 +34,7 @@ public class LoanServiceImp implements LoanService {
 
     @Override
     public LoanDTO save(LoanDTO loanDTO) {
-        Loan loan = loanRepository.save(loanMapper.toEntity(loanDTO));
+        Loan loan = loanRepository.save(loanMapper.toEntity(loanDTO, userService, bookService));
         return loanMapper.toDTO(loan);
     }
 

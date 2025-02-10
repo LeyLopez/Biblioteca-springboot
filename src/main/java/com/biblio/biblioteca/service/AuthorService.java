@@ -1,6 +1,7 @@
 package com.biblio.biblioteca.service;
 
 import com.biblio.biblioteca.dto.AuthorDTO;
+import com.biblio.biblioteca.entity.Author;
 
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface AuthorService {
     Optional<AuthorDTO> update(Long id, AuthorDTO authorDTO);
 
     List<AuthorDTO> findAll();
+
+    Author findAuthorById(Long id);
 }

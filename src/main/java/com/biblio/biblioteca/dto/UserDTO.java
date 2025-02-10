@@ -1,11 +1,8 @@
 package com.biblio.biblioteca.dto;
 
-import com.biblio.biblioteca.entity.Loan;
-import com.biblio.biblioteca.entity.Reservation;
-import com.biblio.biblioteca.entity.Role;
+import com.biblio.biblioteca.entity.ERole;
 
 import java.util.Date;
-import java.util.Set;
 
 public record UserDTO(Long id, String name,
                       String lastname,
@@ -15,7 +12,6 @@ public record UserDTO(Long id, String name,
                       Integer documentNumber,
                       Date dateOfBirth,
                       String phoneNumber,
-                      String address,
-                      Role role
+                      String address
                       ) {
 }

@@ -15,11 +15,12 @@ public class BookServiceImp implements BookService {
 
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
+    private final AuthorService authorService;
 
-
-    public BookServiceImp(BookRepository bookRepository, BookMapper bookMapper) {
+    public BookServiceImp(BookRepository bookRepository, BookMapper bookMapper, AuthorService authorService) {
         this.bookRepository = bookRepository;
         this.bookMapper = bookMapper;
+        this.authorService = authorService;
     }
 
 
@@ -31,13 +32,13 @@ public class BookServiceImp implements BookService {
 
     @Override
     public Optional<BookDTO> findByName(String titulo) {
-        return bookRepository.findByTitulo(titulo)
+        return bookRepository.findByTitle(titulo)
                 .map(bookMapper::toDTO);
     }
 
     @Override
     public BookDTO save(BookDTO bookDTO) {
-        Book book = bookRepository.save(bookMapper.toEntity(bookDTO));
+        Book book = bookRepository.save(bookMapper.toEntity(bookDTO, authorService));
         return bookMapper.toDTO(book);
     }
 
@@ -51,10 +52,10 @@ public class BookServiceImp implements BookService {
         return bookRepository.findById(id)
                 .map(libroInBD->{
                         libroInBD.setTitle(bookDTO.title());
-                        libroInBD.setAuthor(bookDTO.author());
                         libroInBD.setDescription(bookDTO.description());
-                        libroInBD.setDateOfPublication(bookDTO.publicationDate());
+                        libroInBD.setDateOfPublication(bookDTO.dateOfPublication());
                         libroInBD.setQuantity(bookDTO.quantity());
+                        libroInBD.setCoverPage(bookDTO.coverPage());
 
                         return bookRepository.save(libroInBD);
                     }
@@ -67,4 +68,11 @@ public class BookServiceImp implements BookService {
                 .map(dto-> bookMapper.toDTO(dto))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Book findBookById(Long id) {
+        return bookRepository.findById(id).orElse(null);
+    }
+
+
 }

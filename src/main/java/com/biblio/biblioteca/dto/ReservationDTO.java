@@ -10,7 +10,7 @@ public record ReservationDTO(Long id,
                              Date reservationDate,
                              Date ReservationEndDate,
                              Date statusChangeDate,
-                             User user,
-                             Book book,
+                             Long user,
+                             Long book,
                              Status status) {
 }

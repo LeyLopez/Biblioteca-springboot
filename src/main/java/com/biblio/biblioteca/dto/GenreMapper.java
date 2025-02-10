@@ -4,7 +4,7 @@ import com.biblio.biblioteca.entity.Genre;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface GenreMapper {
 
     GenreDTO toDTO(Genre genre);

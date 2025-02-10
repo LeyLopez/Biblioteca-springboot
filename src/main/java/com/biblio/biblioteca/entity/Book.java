@@ -1,5 +1,6 @@
 package com.biblio.biblioteca.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,22 +33,28 @@ public class Book {
     @Column(nullable = false)
     private Integer quantity;
 
+    @Column(nullable = false)
+    private String coverPage;
+
     //Relación entre los libros y el autor
     @ManyToOne(targetEntity = Author.class)
     private Author author;
 
     //Relacion entre el libro y sus reservas
-    @OneToMany(targetEntity = Reservation.class, mappedBy = "libro", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(targetEntity = Reservation.class, mappedBy = "book", fetch = FetchType.LAZY)
     private Set<Reservation> reservations;
 
-    @OneToMany(targetEntity = Loan.class, mappedBy = "libro", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(targetEntity = Loan.class, mappedBy = "book", fetch = FetchType.LAZY)
     private Set<Loan> loans;
 
 
     @ManyToMany
-    @JoinTable(name = "GENEROS_LIBRO",
-    joinColumns = @JoinColumn(name = "LIBRO_ID", referencedColumnName = "id"),
-    inverseJoinColumns = @JoinColumn(name = "GENERO_ID", referencedColumnName = "id"))
+    @JsonIgnore
+    @JoinTable(name = "book_genres",
+    joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
+    inverseJoinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "id"))
     private Set<Genre> genres;
 
 

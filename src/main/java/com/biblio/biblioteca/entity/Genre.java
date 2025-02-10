@@ -20,6 +20,6 @@ public class Genre {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(mappedBy = "generos")
+    @ManyToMany(mappedBy = "genres")
     private Set<Book> books;
 }

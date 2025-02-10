@@ -15,10 +15,14 @@ public class ReservationServiceImp implements ReservationService {
 
     private final ReservationRepository reservationRepository;
     private final ReservationMapper reservationMapper;
+    private final UserService userService;
+    private final BookService bookService;
 
-    public ReservationServiceImp(ReservationRepository reservationRepository, ReservationMapper reservationMapper) {
+    public ReservationServiceImp(ReservationRepository reservationRepository, ReservationMapper reservationMapper, UserService userService, BookService bookService) {
         this.reservationRepository = reservationRepository;
         this.reservationMapper = reservationMapper;
+        this.userService = userService;
+        this.bookService = bookService;
     }
 
     @Override
@@ -29,7 +33,7 @@ public class ReservationServiceImp implements ReservationService {
 
     @Override
     public ReservationDTO save(ReservationDTO reservationDTO) {
-        Reservation reservation = reservationRepository.save(reservationMapper.toEntity(reservationDTO));
+        Reservation reservation = reservationRepository.save(reservationMapper.toEntity(reservationDTO, userService, bookService));
         return reservationMapper.toDTO(reservation);
     }
 

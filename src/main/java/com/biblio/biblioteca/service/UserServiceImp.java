@@ -68,7 +68,6 @@ public class UserServiceImp implements UserService {
                         usuarioInBD.setAddress(newusuarioDTO.address());
                         usuarioInBD.setKindOfDocument(newusuarioDTO.documentType());
                         usuarioInBD.setDocumentNumber(newusuarioDTO.documentNumber());
-                        usuarioInBD.setRole(newusuarioDTO.role());
 
                         return userRepository.save(usuarioInBD);
 
@@ -81,5 +80,10 @@ public class UserServiceImp implements UserService {
         return userRepository.findAll().stream()
                 .map(dto-> userMapper.toDTO(dto))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public User findUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
     }
 }

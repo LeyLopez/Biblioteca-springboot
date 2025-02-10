@@ -1,5 +1,6 @@
 package com.biblio.biblioteca.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +13,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "authors")
+@Table(name = "autores")
 @Entity
 public class Author {
 
@@ -31,7 +32,8 @@ public class Author {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
 
-    @OneToMany(targetEntity = Book.class, mappedBy = "autor", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(targetEntity = Book.class, mappedBy = "author", fetch = FetchType.LAZY)
     private Set<Book> books;
 
 

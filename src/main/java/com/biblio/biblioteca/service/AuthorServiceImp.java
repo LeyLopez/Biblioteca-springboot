@@ -63,4 +63,9 @@ public class AuthorServiceImp implements AuthorService {
                 .map(dto-> authorMapper.toDto(dto))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Author findAuthorById(Long id) {
+        return authorRepository.findById(id).orElse(null);
+    }
 }

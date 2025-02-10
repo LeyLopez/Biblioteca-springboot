@@ -1,5 +1,6 @@
 package com.biblio.biblioteca.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +18,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -26,9 +27,11 @@ public class User {
     @Column(nullable = false)
     private String lastname;
 
-    @Column(nullable = false)
     private String email;
 
+    private String username;
+
+    @JsonIgnore
     @Column(nullable = false)
     private String password;
 
@@ -49,19 +52,32 @@ public class User {
     @Column(nullable = false)
     private String address;
 
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name="user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    public void addRole(Role role) {
+        this.roles.add(role);
+        role.getUsers().add(this);
+    }
+
+    public void removeRole(Role role) {
+        this.roles.remove(role);
+        role.getUsers().remove(this);
+    }
 
 
-    //Relacion entre el usuario y sus reservas
-    @OneToMany(targetEntity = Reservation.class, mappedBy = "usuario", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(targetEntity = Reservation.class, mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Reservation> reservations;
 
-    @OneToMany(targetEntity = Loan.class, mappedBy = "usuario", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(targetEntity = Loan.class, mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Loan> loans;
-
-
 
 
 }
