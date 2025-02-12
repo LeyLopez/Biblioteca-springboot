@@ -22,8 +22,8 @@ public interface LoanMapper {
     @Mapping(target="id", ignore = true)
     LoanDTO toDTOWithoutId(Loan loan);
 
-    @Mapping(source = "user.id", target = "user", qualifiedByName = "IdToUser")
-    @Mapping(source = "book.id", target = "book", qualifiedByName = "IdToBook")
+    @Mapping(source = "user", target = "user", qualifiedByName = "IdToUser")
+    @Mapping(source = "book", target = "book", qualifiedByName = "IdToBook")
     Loan toEntity(LoanDTO loanDTO, @Context UserService userService, @Context BookService bookService);
 
     @Named("IdToUser")

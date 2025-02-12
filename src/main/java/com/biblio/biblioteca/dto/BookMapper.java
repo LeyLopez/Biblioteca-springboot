@@ -7,7 +7,6 @@ import org.mapstruct.Context;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import org.springframework.data.repository.query.Param;
 
 @Mapper(componentModel = "spring")
 public interface BookMapper {
@@ -19,7 +18,7 @@ public interface BookMapper {
     @Mapping(target = "id", ignore = true)
     BookDTO toDTOWithoutId(Book book);
 
-    @Mapping(source = "author.id", target = "author", qualifiedByName = "IdToAuthor")
+    @Mapping(source = "author", target = "author", qualifiedByName = "IdToAuthor")
     Book toEntity(BookDTO bookDTO, @Context AuthorService authorService);
 
     @Named("IdToAuthor")

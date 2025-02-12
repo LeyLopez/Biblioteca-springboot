@@ -1,8 +1,6 @@
 package com.biblio.biblioteca.dto;
 
 import com.biblio.biblioteca.entity.Status;
-import com.biblio.biblioteca.entity.Book;
-import com.biblio.biblioteca.entity.User;
 
 import java.util.Date;
 

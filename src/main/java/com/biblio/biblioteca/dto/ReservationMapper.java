@@ -22,8 +22,8 @@ public interface ReservationMapper {
     @Mapping(target = "id", ignore = true)
     ReservationDTO toDTOWithoutId(Reservation reservation);
 
-    @Mapping(source = "book.id", target = "book", qualifiedByName = "IdToBook")
-    @Mapping(source = "user.id", target = "user", qualifiedByName = "IdToUser")
+    @Mapping(source = "book", target = "book", qualifiedByName = "IdToBook")
+    @Mapping(source = "user", target = "user", qualifiedByName = "IdToUser")
     Reservation toEntity(ReservationDTO reservationDTO, @Context UserService userService, @Context BookService bookService);
 
     @Named("IdToUser")
@@ -33,7 +33,6 @@ public interface ReservationMapper {
 
     @Named("IdToBook")
     default Book mapIdToBook(Long id, @Context BookService bookService) {
-        return id!=null? bookService.findBookById(id) : null;
+        return id!=null? bookService.findBookById(id) :null;
     }
-
 }

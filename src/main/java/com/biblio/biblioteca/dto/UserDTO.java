@@ -1,7 +1,5 @@
 package com.biblio.biblioteca.dto;
 
-import com.biblio.biblioteca.entity.ERole;
-
 import java.util.Date;
 
 public record UserDTO(Long id, String name,
