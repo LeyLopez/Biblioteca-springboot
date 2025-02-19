@@ -3,7 +3,7 @@ package com.biblio.biblioteca.api;
 
 import com.biblio.biblioteca.dto.ReservationDTO;
 import com.biblio.biblioteca.exception.NotFoundException;
-import com.biblio.biblioteca.service.ReservationService;
+import com.biblio.biblioteca.security.service.ReservationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;

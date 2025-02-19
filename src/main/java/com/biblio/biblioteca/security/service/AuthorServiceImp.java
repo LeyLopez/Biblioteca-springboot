@@ -1,4 +1,4 @@
-package com.biblio.biblioteca.service;
+package com.biblio.biblioteca.security.service;
 
 import com.biblio.biblioteca.dto.AuthorDTO;
 import com.biblio.biblioteca.dto.AuthorMapper;

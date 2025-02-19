@@ -2,7 +2,7 @@ package com.biblio.biblioteca.api;
 
 import com.biblio.biblioteca.dto.BookDTO;
 import com.biblio.biblioteca.exception.NotFoundException;
-import com.biblio.biblioteca.service.BookService;
+import com.biblio.biblioteca.security.service.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;

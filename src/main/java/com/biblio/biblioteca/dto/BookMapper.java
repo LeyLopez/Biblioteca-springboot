@@ -2,7 +2,7 @@ package com.biblio.biblioteca.dto;
 
 import com.biblio.biblioteca.entity.Author;
 import com.biblio.biblioteca.entity.Book;
-import com.biblio.biblioteca.service.AuthorService;
+import com.biblio.biblioteca.security.service.AuthorService;
 import org.mapstruct.Context;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
