@@ -9,6 +9,10 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.Set;
 
+//Clase que representa a la entidad libro, aquí se definen los atributos de la tabla libros,
+// entre los cuales se encuentran el titulo, la descripcion, la fecha de publicación, la cantidad de ejemplares en la biblioteca,
+//la URL de la portada del libro. Además, se presentan las relaciones con las tabla autores, reservaciones,
+//prestamos y generos.
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

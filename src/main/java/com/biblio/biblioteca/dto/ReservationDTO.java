@@ -6,7 +6,7 @@ import java.util.Date;
 
 public record ReservationDTO(Long id,
                              Date reservationDate,
-                             Date ReservationEndDate,
+                             Date reservationEndDate,
                              Date statusChangeDate,
                              Long user,
                              Long book,

@@ -10,6 +10,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 import java.util.Set;
 
+//Clase que representa a la entidad autor, aquí se definen los atributos de la tabla autores,
+// entre los cuales se encuentran el nombre el apellido y la fecha de nacimiento del autor.
+//Además, se presenta la relacion con la tabla libros.
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

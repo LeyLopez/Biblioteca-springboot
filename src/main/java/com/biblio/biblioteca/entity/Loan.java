@@ -8,6 +8,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+//Clase que representa a la entidad préstamo, aquí se definen los atributos de la tabla prestamos,
+// entre los cuales se encuentran la fecha de prestamo, la fecha de devolución, la fecha de cambio de estado,
+//. Además, se presentan las relaciones con las tabla usuarios, libros,
+//y estados.
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

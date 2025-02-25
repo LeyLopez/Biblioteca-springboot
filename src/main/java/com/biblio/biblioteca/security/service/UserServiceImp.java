@@ -66,7 +66,7 @@ public class UserServiceImp implements UserService {
                         usuarioInBD.setDateOfBirth(newusuarioDTO.dateOfBirth());
                         usuarioInBD.setPassword(newusuarioDTO.password());
                         usuarioInBD.setAddress(newusuarioDTO.address());
-                        usuarioInBD.setKindOfDocument(newusuarioDTO.documentType());
+                        usuarioInBD.setKindOfDocument(newusuarioDTO.kindOfDocument());
                         usuarioInBD.setDocumentNumber(newusuarioDTO.documentNumber());
 
                         return userRepository.save(usuarioInBD);

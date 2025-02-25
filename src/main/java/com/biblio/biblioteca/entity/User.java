@@ -10,6 +10,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 import java.util.Set;
 
+//Clase que representa a la entidad usuario, aquí se definen los atributos de la tabla usuarios,
+// entre los cuales se encuentran nombre, apellido, email, username, contraseña, tipo de documento, numero de documento,
+//fecha de nacimiento, numero de telefono y dirrección.
+//. Además, se presentan las relaciones con las tabla roles, reservaciones,
+//y prestamos.
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

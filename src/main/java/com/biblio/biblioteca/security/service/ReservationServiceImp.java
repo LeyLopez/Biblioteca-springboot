@@ -46,7 +46,7 @@ public class ReservationServiceImp implements ReservationService {
     public Optional<ReservationDTO> update(Long id, ReservationDTO reservationDTO) {
         return reservationRepository.findById(id).map(reservaInBD->{
             reservaInBD.setReservationDate(reservationDTO.reservationDate());
-            reservaInBD.setReservationEndDate(reservationDTO.ReservationEndDate());
+            reservaInBD.setReservationEndDate(reservationDTO.reservationEndDate());
             reservaInBD.setStatus(reservationDTO.status());
             reservaInBD.setStatusChangeDate(reservationDTO.statusChangeDate());
 

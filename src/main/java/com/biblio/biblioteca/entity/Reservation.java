@@ -8,6 +8,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+//Clase que representa a la entidad reservaciones, aquí se definen los atributos de la tabla reservación,
+// entre los cuales se encuentran la fecha de reservación, la fecha fin de reservación, la fecha de cambio de estado,
+//. Además, se presentan las relaciones con las tabla usuarios, libros,
+//y estados.
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

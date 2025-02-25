@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Set;
-
+//Clase que representa a la entidad generos, aquí se definen los atributos de la tabla generos,
+// entre los cuales se encuentran el id y el nombre del genero.
+//. Además, se presenta la relacion con la tabla de libros.
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
