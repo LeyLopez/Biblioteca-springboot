@@ -26,7 +26,7 @@ public class BookAPI {
         return ResponseEntity.ok(bookService.findAll());
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<BookDTO> getBookById(@PathVariable ("id") Long id) {
         return bookService.findById(id).map(l->ResponseEntity.ok().body(l))
                 .orElseThrow(()->new NotFoundException("No se encontró el libro con el ID "+id));
@@ -46,7 +46,7 @@ public class BookAPI {
     }
 
 
-    @PutMapping("/id")
+    @PutMapping("/{id}")
     public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody BookDTO book) {
         Optional<BookDTO> libroToUpdate = bookService.update(id, book);
         return libroToUpdate.map(l->ResponseEntity.ok(l))
@@ -54,7 +54,7 @@ public class BookAPI {
     }
 
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<BookDTO> deleteBook(@PathVariable Long id) {
         return bookService.findById(id)
                 .map(l->{
