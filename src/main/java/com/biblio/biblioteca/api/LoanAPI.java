@@ -28,7 +28,7 @@ public class LoanAPI {
         return ResponseEntity.ok(prestamoService.findAll());
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<LoanDTO> getLoanById(@PathVariable("id") Long id) {
         return prestamoService.findById(id).map(l->ResponseEntity.ok().body(l))
                 .orElseThrow(()->new NotFoundException("No se encontró el préstamo con el ID "+id));
@@ -48,7 +48,7 @@ public class LoanAPI {
     }
 
 
-    @PutMapping("/id")
+    @PutMapping("/{id}")
     public ResponseEntity<LoanDTO> updateLoan(@PathVariable Long id, @RequestBody LoanDTO prestamo) {
         Optional<LoanDTO> prestamoToUpdate = prestamoService.update(id, prestamo);
         return prestamoToUpdate.map(l->ResponseEntity.ok(l))
@@ -56,7 +56,7 @@ public class LoanAPI {
     }
 
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<LoanDTO> deleteLoan(@PathVariable Long id) {
         return prestamoService.findById(id)
                 .map(l->{

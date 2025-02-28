@@ -30,7 +30,7 @@ public class UserAPI {
         return ResponseEntity.ok(userService.findAll());
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable("id") Long id) {
         return userService.findById(id).map(l->ResponseEntity.ok().body(l))
                 .orElseThrow(()->new NotFoundException("No se encontró el usuario con el ID "+id));
@@ -50,7 +50,7 @@ public class UserAPI {
     }
 
 
-    @PutMapping("/id")
+    @PutMapping("/{id}")
     public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO usuario) {
         Optional<UserDTO> usuarioToUpdate = userService.update(id, usuario);
         return usuarioToUpdate.map(l->ResponseEntity.ok(l))
@@ -58,7 +58,7 @@ public class UserAPI {
     }
 
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<UserDTO> deleteUser(@PathVariable Long id) {
         return userService.findById(id)
                 .map(l->{

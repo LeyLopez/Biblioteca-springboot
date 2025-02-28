@@ -28,7 +28,7 @@ public class GenreAPI {
     }
 
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<GenreDTO> getGenreById(@PathVariable("id") Long id){
         return generoService.findById(id).map(g->ResponseEntity.ok().body(g))
                 .orElseThrow(()->new NotFoundException("No se encontró el genero con el ID "+id));
@@ -48,7 +48,7 @@ public class GenreAPI {
         return ResponseEntity.created(location).body(newGenero);
     }
 
-    @PutMapping("/id")
+    @PutMapping("/{id}")
     public ResponseEntity<GenreDTO> actualizarGenero(@PathVariable Long id, @RequestBody GenreDTO genero){
         Optional<GenreDTO> generoToUpdate = generoService.update(id, genero);
         return generoToUpdate.map(g->ResponseEntity.ok(g))
@@ -57,7 +57,7 @@ public class GenreAPI {
                 });
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<GenreDTO> eliminarGenero(@PathVariable Long id){
         return generoService.findById(id).map(g->{
             generoService.delete(id);

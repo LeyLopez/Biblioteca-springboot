@@ -28,7 +28,7 @@ public class ReservationAPI {
         return ResponseEntity.ok(reservationService.findAll());
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<ReservationDTO> getReservationById(@PathVariable("id") Long id) {
         return reservationService.findById(id).map(l->ResponseEntity.ok().body(l))
                 .orElseThrow(()->new NotFoundException("No se encontró la reserva con el ID "+id));
@@ -48,7 +48,7 @@ public class ReservationAPI {
     }
 
 
-    @PutMapping("/id")
+    @PutMapping("/{id}")
     public ResponseEntity<ReservationDTO> updateReservation(@PathVariable Long id, @RequestBody ReservationDTO reservation) {
         Optional<ReservationDTO> reservaToUpdate = reservationService.update(id, reservation);
         return reservaToUpdate.map(l->ResponseEntity.ok(l))
@@ -56,7 +56,7 @@ public class ReservationAPI {
     }
 
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<ReservationDTO> deleteReservation(@PathVariable Long id) {
         return reservationService.findById(id)
                 .map(l->{
