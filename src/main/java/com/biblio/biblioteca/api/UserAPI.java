@@ -66,4 +66,14 @@ public class UserAPI {
                     return ResponseEntity.ok().body(l);
                 }).orElseThrow(()->new NotFoundException("No se encontró el usuario con el ID "+id));
     }
+
+
+    @GetMapping("/username/{username}")
+    public ResponseEntity<UserDTO> getUserByUsername(@PathVariable String username) {
+        return userService.findByUsername(username)
+                .map(u->ResponseEntity.ok().body(u))
+                .orElseThrow(()->new NotFoundException("No se pudo encontrar el cliente con el username "+username));
+    }
+
+
 }

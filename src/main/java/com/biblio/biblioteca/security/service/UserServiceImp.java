@@ -86,4 +86,9 @@ public class UserServiceImp implements UserService {
     public User findUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public Optional<UserDTO> findByUsername(String username) {
+        return userRepository.findByUsername(username).map(userMapper::toDTO);
+    }
 }
