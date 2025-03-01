@@ -7,6 +7,7 @@ public record SignupRequest(
         String name,
         String lastname,
         String email,
+        String username,
         String password,
         String kindOfDocument,
         Integer documentNumber,
