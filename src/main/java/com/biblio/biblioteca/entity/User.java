@@ -2,9 +2,7 @@ package com.biblio.biblioteca.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -15,7 +13,8 @@ import java.util.Set;
 //fecha de nacimiento, numero de telefono y dirrección.
 //. Además, se presentan las relaciones con las tabla roles, reservaciones,
 //y prestamos.
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "usuarios")

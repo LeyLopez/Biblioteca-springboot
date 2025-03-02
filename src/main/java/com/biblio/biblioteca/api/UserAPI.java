@@ -6,6 +6,7 @@ import com.biblio.biblioteca.dto.UserDTO;
 import com.biblio.biblioteca.exception.NotFoundException;
 import com.biblio.biblioteca.security.service.UserService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/usuario")
+@CrossOrigin(origins = "http://localhost:5173/")
 public class UserAPI {
 
     private final UserService userService;
@@ -26,11 +28,13 @@ public class UserAPI {
 
 
     @GetMapping
+    @PreAuthorize("hasRole('user')")
     public ResponseEntity<List<UserDTO>> getUsers() {
         return ResponseEntity.ok(userService.findAll());
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('user')")
     public ResponseEntity<UserDTO> getUserById(@PathVariable("id") Long id) {
         return userService.findById(id).map(l->ResponseEntity.ok().body(l))
                 .orElseThrow(()->new NotFoundException("No se encontró el usuario con el ID "+id));
@@ -66,4 +70,15 @@ public class UserAPI {
                     return ResponseEntity.ok().body(l);
                 }).orElseThrow(()->new NotFoundException("No se encontró el usuario con el ID "+id));
     }
+
+
+    @GetMapping("/username/{username}")
+    @PreAuthorize("hasRole('user')")
+    public ResponseEntity<UserDTO> getUserByUsername(@PathVariable String username) {
+        return userService.findByUsername(username)
+                .map(u->ResponseEntity.ok().body(u))
+                .orElseThrow(()->new NotFoundException("No se pudo encontrar el cliente con el username "+username));
+    }
+
+
 }

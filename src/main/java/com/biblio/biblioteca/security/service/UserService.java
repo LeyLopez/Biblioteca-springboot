@@ -27,4 +27,6 @@ public interface UserService {
     List<UserDTO> findAll();
 
     User findUserById(Long id);
+
+    Optional<UserDTO> findByUsername(String username);
 }
