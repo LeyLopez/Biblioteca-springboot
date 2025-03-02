@@ -3,6 +3,7 @@ package com.biblio.biblioteca.api;
 import com.biblio.biblioteca.dto.BookDTO;
 import com.biblio.biblioteca.exception.NotFoundException;
 import com.biblio.biblioteca.security.service.BookService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -21,11 +22,13 @@ public class BookAPI {
         this.bookService = bookService;
     }
 
+    @Operation(summary = "Obtener todos los libros.", description = "Retorna una lista con todos libros de la biblioteca.")
     @GetMapping
     public ResponseEntity<List<BookDTO>> getBooks() {
         return ResponseEntity.ok(bookService.findAll());
     }
 
+    @Operation(summary = "Obtener un libro por ID.", description = "Retorna el objeto libro con el ID proporcionado.")
     @GetMapping("/{id}")
     public ResponseEntity<BookDTO> getBookById(@PathVariable ("id") Long id) {
         return bookService.findById(id).map(l->ResponseEntity.ok().body(l))
@@ -33,6 +36,8 @@ public class BookAPI {
     }
 
 
+    @Operation(summary = "Crear un libro sino existe, si existe, el libro se actualizará con los nuevos datos.",
+            description = "Retorna el objeto libro creado.")
     @PostMapping
     public ResponseEntity<BookDTO> createdBook(@RequestBody BookDTO libro) {
         return createBook(libro);
@@ -45,7 +50,7 @@ public class BookAPI {
         return ResponseEntity.created(location).body(newLibro);
     }
 
-
+    @Operation(summary = "Actualizar un libro por ID.",  description = "Retorna el objeto libro con los datos actualizados.")
     @PutMapping("/{id}")
     public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody BookDTO book) {
         Optional<BookDTO> libroToUpdate = bookService.update(id, book);
@@ -53,7 +58,7 @@ public class BookAPI {
                 .orElseGet(()->createdBook(book));
     }
 
-
+    @Operation(summary = "Eliminar libro por ID.", description = "Retorna el objeto libro eliminado.")
     @DeleteMapping("/{id}")
     public ResponseEntity<BookDTO> deleteBook(@PathVariable Long id) {
         return bookService.findById(id)

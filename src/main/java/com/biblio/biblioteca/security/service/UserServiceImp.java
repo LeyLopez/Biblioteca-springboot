@@ -1,8 +1,8 @@
 package com.biblio.biblioteca.security.service;
 
-import com.biblio.biblioteca.dto.UserDTO;
-import com.biblio.biblioteca.dto.UserMapper;
+import com.biblio.biblioteca.dto.*;
 import com.biblio.biblioteca.entity.User;
+import com.biblio.biblioteca.exception.NotFoundException;
 import com.biblio.biblioteca.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +15,14 @@ public class UserServiceImp implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final ReservationMapper reservationMapper;
+    private final LoanMapper loanMapper;
 
-    public UserServiceImp(UserRepository userRepository, UserMapper userMapper) {
+    public UserServiceImp(UserRepository userRepository, UserMapper userMapper, ReservationMapper reservationMapper, LoanMapper loanMapper) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.reservationMapper = reservationMapper;
+        this.loanMapper = loanMapper;
     }
 
 
@@ -90,5 +94,23 @@ public class UserServiceImp implements UserService {
     @Override
     public Optional<UserDTO> findByUsername(String username) {
         return userRepository.findByUsername(username).map(userMapper::toDTO);
+    }
+
+    @Override
+    public List<ReservationDTO> findReservationsByUserId(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new NotFoundException("Usuario no encontrado con ID: " + id);
+        }
+        return userRepository.findReservationsById(id).stream()
+                .map(dto->reservationMapper.toDTO(dto)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<LoanDTO> findLoanByUserId(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new NotFoundException("Usuario no encontrado con ID: " + id);
+        }
+        return userRepository.findLoansById(id).stream()
+                .map(dto->loanMapper.toDTO(dto)).collect(Collectors.toList());
     }
 }

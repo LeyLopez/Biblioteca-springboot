@@ -56,6 +56,9 @@ Antes de ejecutar la aplicación, asegúrate de tener instalado:
 
 - **Endpoints de la aplicación (Requieren autenticación)**
     - `GET /api/usuario` - Obtener lista de usuarios.
+    - `GET /api/usuario/reservas/{id}` - Obtener lista de reservas realizados por un usuario.
+    - `GET /api/usuario/prestamos/{id}` - Obtener lista de préstamos realizados por un usuario.
+    - `GET /api/usuario/username/{username}` - Obtener un usuario por su username.
     - `GET /api/libro` -Obtener lista de libros.
     - `GET /api/reserva` -Obtener lista de reservas.
     - `GET /api/prestamo` -Obtener lista de reservas.
@@ -65,17 +68,20 @@ Antes de ejecutar la aplicación, asegúrate de tener instalado:
     - `GET /api/prestamo/{id}` -Obtener prestamo por ID.
     - `GET /api/autor/{id}` -Obtener autor por ID.
     - `GET /api/genero/{id}` -Obtener genero de un libro por ID del genero.
+  
     - `POST /api/genero` -Agregar genero a la biblioteca.
     - `POST /api/libro` -Agregar libro a la biblioteca.
     - `POST /api/autor` -Agregar autor a la biblioteca.
     - `POST /api/prestamo` -Agregar prestamo a la biblioteca.
     - `POST /api/reserva` -Agregar reserva a la biblioteca.
+  
     - `PUT /api/usuario/{id}` -Actualizar un usuario por su ID.
     - `PUT /api/libro/{id}` -Actualizar un libro por su ID.
     - `PUT /api/genero/{id}` -Actualizar un genero por su ID.
     - `PUT /api/autor/{id}` -Actualizar un autor por su ID.
     - `PUT /api/reserva/{id}` -Actualizar una reserva por su ID.
     - `PUT /api/prestamo/{id}` -Actualizar un préstamo por su ID.
+  
     - `DELETE /api/usuario/{id}` -Eliminar un usuario por su ID.
     - `DELETE /api/libro/{id}` -Eliminar un libro por su ID.
     - `DELETE /api/genero/{id}` -Eliminar un genero por su ID.

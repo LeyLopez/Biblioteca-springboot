@@ -4,6 +4,7 @@ package com.biblio.biblioteca.api;
 import com.biblio.biblioteca.dto.AuthorDTO;
 import com.biblio.biblioteca.exception.NotFoundException;
 import com.biblio.biblioteca.security.service.AuthorService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -24,12 +25,13 @@ public class AuthorAPI {
         this.authorService = authorService;
     }
 
-
+    @Operation(summary = "Obtener todos los autores.", description = "Retorna una lista con todos autores de la biblioteca.")
     @GetMapping
     public ResponseEntity<List<AuthorDTO>> getAuthors(){
         return ResponseEntity.ok(authorService.findAll());
     }
 
+    @Operation(summary = "Obtener un autor por ID.", description = "Retorna el objeto autor con el ID proporcionado.")
     @GetMapping("/{id}")
     public ResponseEntity<AuthorDTO> getAuthorById(@PathVariable("id") Long id){
         return authorService.findById(id)
@@ -38,6 +40,7 @@ public class AuthorAPI {
     }
 
 
+    @Operation(summary = "Crear un autor.", description = "Retorna el objeto autor creado.")
     @PostMapping
     public ResponseEntity<AuthorDTO> createdAuthor(@RequestBody AuthorDTO autor){
         return createAutor(autor);
@@ -52,6 +55,7 @@ public class AuthorAPI {
     }
 
 
+    @Operation(summary = "Actualizar un autor por ID.",  description = "Retorna el objeto autor con los datos actualizados.")
     @PutMapping("/{id}")
     public ResponseEntity<AuthorDTO> updateAuhtor(@PathVariable Long id, @RequestBody AuthorDTO autor){
         Optional<AuthorDTO> autorToUpdate = authorService.update(id, autor);
@@ -61,6 +65,7 @@ public class AuthorAPI {
                 });
     }
 
+    @Operation(summary = "Eliminar autor por ID.", description = "Retorna el objeto autor eliminado.")
     @DeleteMapping("/{id}")
     public ResponseEntity<AuthorDTO> deteleAuthor(@PathVariable Long id){
         return authorService.findById(id).map(a->{

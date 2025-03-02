@@ -2,6 +2,8 @@ package com.biblio.biblioteca.security.service;
 
 
 
+import com.biblio.biblioteca.dto.LoanDTO;
+import com.biblio.biblioteca.dto.ReservationDTO;
 import com.biblio.biblioteca.dto.UserDTO;
 import com.biblio.biblioteca.entity.User;
 
@@ -29,4 +31,8 @@ public interface UserService {
     User findUserById(Long id);
 
     Optional<UserDTO> findByUsername(String username);
+
+    List<ReservationDTO> findReservationsByUserId(Long id);
+
+    List<LoanDTO> findLoanByUserId(Long id);
 }
