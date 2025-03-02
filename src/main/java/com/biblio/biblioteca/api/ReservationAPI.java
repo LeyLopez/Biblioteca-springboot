@@ -5,6 +5,7 @@ import com.biblio.biblioteca.dto.ReservationDTO;
 import com.biblio.biblioteca.exception.NotFoundException;
 import com.biblio.biblioteca.security.service.ReservationService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -36,6 +37,7 @@ public class ReservationAPI {
 
 
     @PostMapping
+    @PreAuthorize("hasRole('user')")
     public ResponseEntity<ReservationDTO> createdReservation(@RequestBody ReservationDTO reserva) {
         return createReservation(reserva);
     }

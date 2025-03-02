@@ -16,10 +16,10 @@ import java.util.Date;
 @Slf4j
 public class JwtUtil {
 
-    @Value("mysecret71729357f7b81bbc408303cc50b8fed83616466f2add0cd2d8ef6a33947ce10aca1e9ea0eaa8f76b58a760eb8932990b46281432d11d935a4f43111e8113171b")
+    @Value("${app.jwt.secret}")
     private String jwtSecret;
 
-    @Value("7200000")
+    @Value("${app.jwt.expiration}")
     private String jwtExpirationMs;
 
     public String generateJwtToken(Authentication authentication) {
@@ -38,6 +38,7 @@ public class JwtUtil {
     public boolean validateJwtToken(String authToken) {
         try{
             Jwts.parserBuilder().setSigningKey(key()).build().parse(authToken);
+            return true;
         } catch (MalformedJwtException e) {
             log.error("Invalid JWT token", e.getMessage());
         }catch (ExpiredJwtException e) {

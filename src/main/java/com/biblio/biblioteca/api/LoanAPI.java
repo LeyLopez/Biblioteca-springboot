@@ -5,6 +5,7 @@ import com.biblio.biblioteca.dto.LoanDTO;
 import com.biblio.biblioteca.exception.NotFoundException;
 import com.biblio.biblioteca.security.service.LoanService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -22,7 +23,6 @@ public class LoanAPI {
         this.prestamoService = prestamoService;
     }
 
-
     @GetMapping
     public ResponseEntity<List<LoanDTO>> getLoans() {
         return ResponseEntity.ok(prestamoService.findAll());
@@ -36,9 +36,11 @@ public class LoanAPI {
 
 
     @PostMapping
+    @PreAuthorize("hasRole('user')")
     public ResponseEntity<LoanDTO> createdLoan(@RequestBody LoanDTO prestamo) {
         return createLoan(prestamo);
     }
+
 
     private ResponseEntity<LoanDTO> createLoan(LoanDTO prestamo) {
         LoanDTO newPrestamo = prestamoService.save(prestamo);
